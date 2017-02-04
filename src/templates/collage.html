@@ -1,24 +1,37 @@
 <html>
     <head>
         <title> Hello, world! </title>
+        <script src={{url_for('static', filename='css/jquery-3.1.1.min.js')}} type="text/javascript"></script>
+        <script src = {{url_for('static', filename='css/semantic.js')}} type = "text/javascript"> </script>
+        <link rel="stylesheet" href={{url_for('static', filename='css/semantic.css')}}>
     </head>
     <body>
+    <div class = "ui centered two column grid">
+    <div class = "five wide column" style="position: relative; top:230px">
     {% if input %}
-        <form action='collage' method = 'post'>
-            <input type = "text" name = "lastfm_username"> </input>
-           
-			<select name="duration" multiple>
-			  <option value="7day">7 days</option>
-			  <option value="1month">1 month</option>
-			  <option value="3month">3 months</option>
-			  <option value="6month">6 months</option>
-			  <option value="overall">Overall</option>
-			</select>
- 			<input type = "submit">
+        <form class = "ui form" action='collage' method = 'post'>
+            <h3 class = "ui dividing header"> Get a collage! </h3>
+            <div class = "field">
+                <input type = "text" name = "lastfm_username"> </input>
+            </div>
 
+            <div class = "field">
+    			<select class = "ui fluid search dropdown" name="duration" >
+    			  <option value="7day">7 days</option>
+    			  <option value="1month">1 month</option>
+    			  <option value="3month">3 months</option>
+    			  <option value="6month">6 months</option>
+    			  <option value="overall">Overall</option>
+    			</select>
+            </div>
+            <div class = "field">
+     			<input type = "submit" class = "ui primary button">
+            </div>
         </form>
         {% else %}
         <image src={{url_for('static', filename='singhparam.jpg')}} />
     {% endif %}
+    </div>
+    </div>
     </body>
 </html>
