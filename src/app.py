@@ -16,7 +16,7 @@ def index():
 def collage():
     print("HI")
     if request.method=='GET':
-        return render_template('collage.html')
+        return render_template('collage.html',input=True)
     elif request.method == 'POST':
         print("HELLO")
         username = request.form['lastfm_username']
@@ -32,8 +32,8 @@ def collage():
         }
         r = requests.get(config.url, params = payload)
         filenames = get_album_art(r.text, username)
-        generate_collage(filenames)
-        return render_template('collage.html')
+        generate_collage(filenames,username)
+        return render_template('collage.html',input=False,source=username+'.jpg')
 
 if __name__ == "__main__":
     app.run()

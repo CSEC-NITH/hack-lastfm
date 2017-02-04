@@ -21,7 +21,7 @@ def get_token():
         x=json.loads(r.text)
         return x['token']
 
-def generate_collage(images):
+def generate_collage(images,username):
     image = map(Image.open,images)
     new_im = Image.new('RGB', (900, 900))
     x_offset = 0
@@ -32,7 +32,7 @@ def generate_collage(images):
         if x_offset == 900:
             x_offset = 0
             y_offset+=300
-    new_im.save('test.jpg')
+    new_im.save('static/'+username+ '.jpg')
     
 
 def get_album_art(response, username):

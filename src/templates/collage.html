@@ -3,6 +3,7 @@
         <title> Hello, world! </title>
     </head>
     <body>
+    {% if input %}
         <form action='collage' method = 'post'>
             <input type = "text" name = "lastfm_username"> </input>
            
@@ -16,5 +17,8 @@
  			<input type = "submit">
 
         </form>
+        {% else %}
+        <image src={{url_for('static', filename='singhparam.jpg')}} />
+    {% endif %}
     </body>
 </html>
