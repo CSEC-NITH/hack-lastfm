@@ -35,7 +35,7 @@ def generate_collage(images):
     new_im.save('test.jpg')
     
 
-def get_album_art(response):
+def get_album_art(response, username):
     links=[]
     data = json.loads(response)
     print(json.dumps(data,indent = 4))
@@ -43,13 +43,20 @@ def get_album_art(response):
     for i in albums:
         q= (i['image'][-1]['#text']) 
         links.append(q)
-    print(links)
-    
-def download_image(link,filename):
-    r = requests.get(link,stream = True)
-    with open(filename,'wb') as f:
-        r.raw.decode_content = True
-        shutil.copyfileobj(r.raw, f)  
+    return download_images(links, username)
+
+def download_images(links, username):
+    cnt = 0
+    filenames = []
+    for i in links:
+        r = requests.get(i,stream = True)
+        fn = username + str(cnt) + '.png'
+        with open(fn ,'wb') as f:
+            r.raw.decode_content = True
+            shutil.copyfileobj(r.raw, f)
+        filenames.append(fn)
+        cnt += 1
+    return filenames  
 
 
 

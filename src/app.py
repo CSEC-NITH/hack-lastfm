@@ -3,7 +3,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import config
-from utils import get_token,get_album_art
+from utils import get_token,get_album_art, generate_collage
 import requests
 
 app = Flask(__name__)
@@ -31,7 +31,8 @@ def collage():
             'format':'json'
         }
         r = requests.get(config.url, params = payload)
-        get_album_art(r.text)
+        filenames = get_album_art(r.text, username)
+        generate_collage(filenames)
         return render_template('collage.html')
 
 if __name__ == "__main__":
