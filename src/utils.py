@@ -77,10 +77,10 @@ def get_album_data(response):
     playcounts.reverse()
     return artist_names,album_names,playcounts    
 
-def gen_graph(title,labels,frequency,filename):
+def gen_graph(title,labels,frequency,filename,colour):
     x_pos=np.arange(len(labels))
     plt.figure(figsize=(25,10))
-    plt.barh(x_pos, frequency, align='center', alpha=0.5, height=0.5)
+    plt.barh(x_pos, frequency, align='center', alpha=0.5, height=0.5, color=colour)
     plt.yticks(x_pos, labels)
     plt.xlabel('Playcounts')
     plt.title(title)
@@ -113,3 +113,12 @@ def get_tracks_data(response):
     playcounts.reverse()
     return track_names,playcounts      
 
+def gen_artistlinks(response):
+    links=[]
+    data = json.loads(response)
+    print(json.dumps(data,indent = 4))
+    artists = data['artists']['artist']
+    for i in artists:
+        links.append(i['image'][3]['#text'])
+    print(links)
+    return links
