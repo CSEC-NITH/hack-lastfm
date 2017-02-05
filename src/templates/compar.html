@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Show a comparison graph! {% endblock %}
+
+{% block body %}
+
+<div class = "ui centered two column grid">
+    {% if input %}
+        <div class = "five wide column" style="position: relative; top:150px">
+
+        <form class = "ui form" action='comparison' method = 'post'>
+            <h3 class = "ui dividing header"> Generate the graphs </h3>
+            <div class = "field">
+                <input type = "text" name = "lastfm_username1" placeholder = "Last.fm username"> </input>
+                <input type = "text" name = "lastfm_username2" placeholder = "Last.fm username"> </input>
+            </div>
+             <div class = "field">
+                <input type = "submit" class = "ui primary button">
+            </div>
+        </form>
+        	</div>
+
+  		 {% else %}
+  		   		 <br />
+
+  		 {% if zero %}
+  		 	<h3> These two users do not have a single common artist! Listen to more music! </h3>
+  		 {% else %}
+  		 <h3>The following graph is the result of the comparison between two users</h3>
+	    <image class="ui fluid image" src={{url_for('static', filename=graph)}} />
+	    {%endif%}
+	{% endif %}
+	</div>
+ {% endblock %}
