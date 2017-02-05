@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} stats {% endblock %}
+
+{% block body %}
+<div class = "ui centered two column grid">
+    {% if input %}
+        <div class = "five wide column" style="position: relative; top:150px">
+
+        <form class = "ui form" action='stats' method = 'post'>
+            <h3 class = "ui dividing header"> Get a Graph! </h3>
+            <div class = "field">
+                <input type = "text" name = "lastfm_username" placeholder = "Last.fm username"> </input>
+            </div>
+
+            <div class = "field">
+                <select class = "ui fluid search dropdown" name="duration" >
+                    <option value="">Duration</option>
+                  <option value="7day">7 days</option>
+                  <option value="1month">1 month</option>
+                  <option value="3month">3 months</option>
+                  <option value="6month">6 months</option>
+                  <option value="overall">Overall</option>
+                </select>
+            </div>
+            <div class = "field">
+                <input type = "submit" class = "ui primary button">
+            </div>
+        </form>
+        </div>
+        {% else %}
+        <image class="uifluidimage" src={{url_for('static', filename=username + "_albums.png")}} />
+        <image class="uifluidimage" src={{url_for('static', filename=username + "_artists.png")}} />
+        <image class="uifluidimage" src={{url_for('static', filename=username + "_tracks.png")}} />
+    {% endif %}
+    </div>
+{% endblock %}
