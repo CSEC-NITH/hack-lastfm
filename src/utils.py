@@ -86,6 +86,27 @@ def gen_graph(title,labels,frequency,filename,colour):
     plt.title(title)
     plt.savefig('static/' + filename)
 
+
+def comparison_graph(N,freq1,freq2,new_list,user1,user2):
+    ind = np.arange(N)  # the x locations for the groups
+    width = 0.25       # the width of the bars
+
+    fig, ax = plt.subplots(figsize=(25, 10))
+    rects1 = ax.barh(ind, freq1, width, color='#9DB9AE')
+    rects2 = ax.barh(ind + width, freq2, width, color='#645D56')
+    t = ()
+    for i in new_list:
+        t = t+(i,)
+    # add some text for labels, title and axes ticks
+    ax.set_xlabel('Play Count')
+    ax.set_title('Top common artists')
+    ax.set_yticks(ind + width / 2)
+    ax.set_yticklabels(t)
+
+    ax.legend((rects1[0], rects2[0]), (user1, user2))
+
+    plt.savefig('static/'+ user1+user2+'.jpg')
+    
 def get_artists_data(response): 
     artist_names=[]
     playcounts=[]
