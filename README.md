@@ -25,3 +25,5 @@ albums and tracks and compare two different users.
     pip install -r requirements.txt
 
     python app.py
+
+Contributions are welcome! We plan to use d3.js to make better visualizations in the future.
